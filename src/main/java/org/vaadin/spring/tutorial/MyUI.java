@@ -22,7 +22,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @Theme("valo")
 @SpringUI
-@SpringViewDisplay
+//@SpringViewDisplay
 @JavaScript({ "canvas-all.js", "json2.js" })
 public class MyUI extends UI {
 
@@ -89,14 +89,14 @@ public class MyUI extends UI {
 
 	}
 
-	private Button createNavigationButton(String caption, final String viewName) {
+	/*private Button createNavigationButton(String caption, final String viewName) {
 		Button button = new Button(caption);
 		button.addStyleName(ValoTheme.BUTTON_SMALL);
 		// If you didn't choose Java 8 when creating the project, convert this
 		// to an anonymous listener class
 		button.addClickListener(event -> getUI().getNavigator().navigateTo(viewName));
 		return button;
-	}
+	}*/
 
 	/*@Override
 	public void showView(View view) {
