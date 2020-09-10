@@ -52,8 +52,11 @@ public class CanvasFilter implements Filter {
 		
 		LOGGER.info("doFilter request: {}",request);
 		
+		//request.getParameterNames()
 		
 		LOGGER.info("request attributes: {}",Collections.list(request.getAttributeNames()));
+		
+		LOGGER.info("request parameters: {}",Collections.list(request.getParameterNames()));
 		
 		HttpSession session = httpReq.getSession();
 		
