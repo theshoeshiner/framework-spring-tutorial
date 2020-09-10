@@ -1,4 +1,4 @@
-package com.iqvia.rbm.reports.canvas;
+package org.vaadin.spring.tutorial;
 
 import java.io.IOException;
 import java.util.Map;
@@ -11,6 +11,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.springframework.stereotype.Component;
+
+import com.iqvia.rbm.reports.canvas.SignedRequest;
 
 @Component
 public class CanvasFilter implements Filter {
