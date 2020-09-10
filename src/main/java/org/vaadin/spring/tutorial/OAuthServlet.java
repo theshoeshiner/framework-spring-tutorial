@@ -95,6 +95,12 @@ public class OAuthServlet extends VaadinServlet {
         }
 
         tokenUrl = environment + "/services/oauth2/token";
+        
+        System.out.println("init tokenURL: "+tokenUrl);
+        
+        System.out.println("init authUrl: "+authUrl);
+        
+        super.init();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -165,5 +171,8 @@ public class OAuthServlet extends VaadinServlet {
         }
 	System.out.println("Redirecting");
         response.sendRedirect(request.getContextPath() + "/index.html");
+        
+        super.doGet(request, response);
+        
     }
 }
