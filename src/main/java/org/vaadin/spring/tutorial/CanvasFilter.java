@@ -58,6 +58,9 @@ public class CanvasFilter implements Filter {
 		
 		if(signedRequest != null && signedRequest.length > 0) {
 			String signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
+			
+			LOGGER.info("signedRequestJson: {}",signedRequestJson);
+			
 			CanvasRequest canvasRequest = SignedRequest.verifyAndDecode(signedRequest[0], consumerSecret);
 			
 			LOGGER.info("setting context attribute to: {}",canvasRequest);
