@@ -26,25 +26,25 @@
 
 package org.vaadin.spring.tutorial;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.vaadin.server.VaadinServlet;
 import com.vaadin.spring.server.SpringVaadinServlet;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 /**
  * A Servlet for handeling OAuth flow.
@@ -52,6 +52,9 @@ import java.net.URLEncoder;
  */
 //@Component
 public class OAuthServlet extends SpringVaadinServlet {
+	
+	public static final Logger LOGGER = LoggerFactory.getLogger(OAuthServlet.class);
+	
     private static final long serialVersionUID = 1L;
 
     public static final String ACCESS_TOKEN = "ACCESS_TOKEN";
@@ -68,6 +71,8 @@ public class OAuthServlet extends SpringVaadinServlet {
     	//VaadinServlet vs;
     	
         String environment;
+        
+        LOGGER.info("init");
 
         /*
         clientId = this.getInitParameter("clientId");
@@ -107,6 +112,8 @@ public class OAuthServlet extends SpringVaadinServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println("Begin OAuth");
+        
+        LOGGER.info("doGet");
 
         String accessToken = (String) request.getSession().getAttribute(ACCESS_TOKEN);
 
