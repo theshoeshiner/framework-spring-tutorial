@@ -60,6 +60,8 @@ public class CanvasFilter implements Filter {
 			//String signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
 			CanvasRequest canvasRequest = SignedRequest.verifyAndDecode(signedRequest[0], consumerSecret);
 			
+			LOGGER.info("setting context attribute to: {}",canvasRequest);
+			
 			request.setAttribute(CANVAS_CONTEXT_ATT, canvasRequest);
 			
 			//System.out.println("signedRequestJson: "+signedRequestJson);
