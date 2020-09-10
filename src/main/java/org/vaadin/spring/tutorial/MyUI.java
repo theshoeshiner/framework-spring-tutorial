@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.iqvia.rbm.reports.canvas.CanvasRequest;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
@@ -35,7 +36,7 @@ public class MyUI extends UI implements ViewDisplay {
     
     public MyUI() {
 		super();
-		LOGGER.info("instantiate UI: {}",this);
+		//LOGGER.info("instantiate UI: {}",this);
 	}
 
     @Override
@@ -64,21 +65,25 @@ public class MyUI extends UI implements ViewDisplay {
         root.addComponent(springViewDisplay);
         root.setExpandRatio(springViewDisplay, 1.0f);
         
-        System.out.println("init vaadin ui");
+        //System.out.println("init vaadin ui");
         
         //Page.getCurrent().getJavaScript().
         
-        LOGGER.info("Vaadin request: {}",request);
+        //LOGGER.info("Vaadin request: {}",request);
         
         HttpServletRequest servlet = VaadinServletService.getCurrentServletRequest();
         
-        Object canvas = request.getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
+        CanvasRequest canvas = (CanvasRequest) servlet.getSession().getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
         
-        LOGGER.info("canvas context 1: {}",canvas);
+    	LOGGER.info("CanvasRequest: {}",canvas);
         
-        canvas = servlet.getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
-        
-        LOGGER.info("canvas context 2: {}",canvas);
+		/*Object canvas = request.getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
+		
+		LOGGER.info("canvas context 1: {}",canvas);
+		
+		canvas = servlet.getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
+		
+		LOGGER.info("canvas context 2: {}",canvas);*/
         
     }
 
