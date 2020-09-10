@@ -74,7 +74,7 @@ public class OAuthServlet extends SpringVaadinServlet {
         String environment;
         
 
-        LOGGER.warn("init warn");
+        LOGGER.info("init");
         //LOGGER.info("init");
 /*
         clientId = this.getInitParameter("clientId");
@@ -104,12 +104,12 @@ public class OAuthServlet extends SpringVaadinServlet {
 
         tokenUrl = environment + "/services/oauth2/token";
         
-        LOGGER.warn("tokenUrl: {}",tokenUrl);
-        LOGGER.warn("authUrl: {}",authUrl);
+        LOGGER.info("tokenUrl: {}",tokenUrl);
+        LOGGER.info("authUrl: {}",authUrl);
         
-        System.out.println("init tokenURL: "+tokenUrl);
+        //System.out.println("init tokenURL: "+tokenUrl);
         
-        System.out.println("init authUrl: "+authUrl);
+        //System.out.println("init authUrl: "+authUrl);
         
         //SpringViewProvider  svp;
         
@@ -118,9 +118,9 @@ public class OAuthServlet extends SpringVaadinServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("Begin OAuth");
+        //System.out.println("Begin OAuth");
         
-        LOGGER.warn("doGet");
+        LOGGER.info("doGet");
 
         String accessToken = (String) request.getSession().getAttribute(ACCESS_TOKEN);
 
@@ -190,4 +190,12 @@ public class OAuthServlet extends SpringVaadinServlet {
         super.doGet(request, response);
         
     }
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		LOGGER.info("doPost");
+		super.doPost(req, resp);
+	}
+    
+    
 }

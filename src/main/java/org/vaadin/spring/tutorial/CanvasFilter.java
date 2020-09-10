@@ -33,17 +33,17 @@ public class CanvasFilter implements Filter {
 		consumerSecret = "80DF7DF4D1E73D11C65C884A9FE8C4E1749914AF247BA5D39786F5099FC05589";
 		//consumerSecret = System.getenv("CANVAS_CONSUMER_SECRET");
 		
-		System.out.println("init filter");
-		System.out.println("secret");
+		//System.out.println("init filter");
+		//System.out.println("secret");
 		LOGGER.info("init filter");
-		LOGGER.warn("init filter warn");
+		//LOGGER.warn("init filter warn");
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
 		
-		LOGGER.warn("doFilter");
+		LOGGER.info("doFilter");
 		
 		
 		// Pull the signed request out of the request body and verify/decode it.
@@ -51,12 +51,12 @@ public class CanvasFilter implements Filter {
 		String[] signedRequest = parameters.get("signed_request");
 		//System.out.println("signedRequest: "+signedRequest);
 		
-		LOGGER.warn("signedRequest: {}",new Object[] {signedRequest});
+		LOGGER.info("signedRequest: {}",new Object[] {signedRequest});
 		
 		if(signedRequest != null && signedRequest.length > 0) {
 			String signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
 			//System.out.println("signedRequestJson: "+signedRequestJson);
-			LOGGER.warn("signedRequestJson: {}",signedRequestJson);
+			LOGGER.info("signedRequestJson: {}",signedRequestJson);
 		}
 	
 		//String yourConsumerSecret=System.getenv("CANVAS_CONSUMER_SECRET");
