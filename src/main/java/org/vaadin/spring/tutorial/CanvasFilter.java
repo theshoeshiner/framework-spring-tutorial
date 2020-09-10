@@ -68,6 +68,16 @@ public class CanvasFilter implements Filter {
 		
 		LOGGER.info("doFilter set cookie: {}",httpRes.getHeader("Set-Cookie"));
 		
+		/*if(response.containsHeader("Set-Cookie")) {
+			String header = response.getHeader("Set-Cookie")+";SameSite=None";
+			response.setHeader("Set-Cookie", header);
+		}*/
+		
+		if(httpRes.containsHeader(setcook)) {
+			httpRes.addHeader(setcook, "SameSite=None");
+		}
+		
+		LOGGER.info("doFilter set cookie: {}",httpRes.getHeader("Set-Cookie"));
 		
 		LOGGER.info("doFilter session: {}",session);
 		LOGGER.info("doFilter session id: {}",session.getId());
