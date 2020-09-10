@@ -36,25 +36,25 @@ public class CanvasFilter implements Filter {
 		System.out.println("init filter");
 		System.out.println("secret");
 		LOGGER.info("init filter");
-		LOGGER.warn("init filter");
+		LOGGER.warn("init filter warn");
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
-		LOGGER.info("doFilter");
+		LOGGER.warn("doFilter");
 		
 		// Pull the signed request out of the request body and verify/decode it.
 		Map<String, String[]> parameters = request.getParameterMap();
 		String[] signedRequest = parameters.get("signed_request");
 		//System.out.println("signedRequest: "+signedRequest);
 		
-		LOGGER.info("signedRequest: {}",new Object[] {signedRequest});
+		LOGGER.warn("signedRequest: {}",new Object[] {signedRequest});
 		
 		if(signedRequest != null && signedRequest.length > 0) {
 			String signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
 			//System.out.println("signedRequestJson: "+signedRequestJson);
-			LOGGER.info("signedRequestJson: {}",signedRequestJson);
+			LOGGER.warn("signedRequestJson: {}",signedRequestJson);
 		}
 	
 		//String yourConsumerSecret=System.getenv("CANVAS_CONSUMER_SECRET");

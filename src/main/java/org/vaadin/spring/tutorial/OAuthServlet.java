@@ -73,8 +73,8 @@ public class OAuthServlet extends SpringVaadinServlet {
     	
         String environment;
         
-        LOGGER.warn("init");
-        LOGGER.info("init");
+        LOGGER.warn("init warn");
+        //LOGGER.info("init");
 
         /*
         clientId = this.getInitParameter("clientId");
@@ -104,8 +104,8 @@ public class OAuthServlet extends SpringVaadinServlet {
 
         tokenUrl = environment + "/services/oauth2/token";
         
-        LOGGER.info("tokenUrl: {}",tokenUrl);
-        LOGGER.info("authUrl: {}",authUrl);
+        LOGGER.warn("tokenUrl: {}",tokenUrl);
+        LOGGER.warn("authUrl: {}",authUrl);
         
         System.out.println("init tokenURL: "+tokenUrl);
         
