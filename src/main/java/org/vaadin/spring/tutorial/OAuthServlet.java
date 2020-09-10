@@ -44,6 +44,7 @@ import org.json.JSONTokener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.vaadin.spring.navigator.SpringViewProvider;
 import com.vaadin.spring.server.SpringVaadinServlet;
 
 /**
@@ -72,7 +73,7 @@ public class OAuthServlet extends SpringVaadinServlet {
     	
         String environment;
         
-        LOGGER.info("init");
+        LOGGER.warn("init");
 
         /*
         clientId = this.getInitParameter("clientId");
@@ -106,6 +107,8 @@ public class OAuthServlet extends SpringVaadinServlet {
         
         System.out.println("init authUrl: "+authUrl);
         
+        //SpringViewProvider  svp;
+        
         super.init();
     }
 
@@ -113,7 +116,7 @@ public class OAuthServlet extends SpringVaadinServlet {
 
         System.out.println("Begin OAuth");
         
-        LOGGER.info("doGet");
+        LOGGER.warn("doGet");
 
         String accessToken = (String) request.getSession().getAttribute(ACCESS_TOKEN);
 

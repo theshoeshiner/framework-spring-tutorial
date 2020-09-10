@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.iqvia.rbm.reports.canvas.SignedRequest;
@@ -18,6 +20,8 @@ import com.iqvia.rbm.reports.canvas.SignedRequest;
 public class CanvasFilter implements Filter {
 	
 	String consumerSecret;
+	
+	public static final Logger LOGGER = LoggerFactory.getLogger(CanvasFilter.class);
 	
 	//protected String ssoSubjectAttribute  = "ping.sso.subject";
 	//protected String ssoDomainAttribute  = "ping.sso.userdomain";
@@ -31,6 +35,7 @@ public class CanvasFilter implements Filter {
 		
 		System.out.println("init filter");
 		System.out.println("secret");
+		LOGGER.warn("init filter");
 	}
 
 	@Override
