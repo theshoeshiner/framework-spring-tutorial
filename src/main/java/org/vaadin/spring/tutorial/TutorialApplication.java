@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.spring.server.SpringVaadinServlet;
 
 @SpringBootApplication
 public class TutorialApplication {
@@ -15,6 +16,7 @@ public class TutorialApplication {
     
     @Bean
     public VaadinServlet vaadinServlet() {
+    	
         return new OAuthServlet();
     }
 }

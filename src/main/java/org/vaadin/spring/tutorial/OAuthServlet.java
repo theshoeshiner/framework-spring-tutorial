@@ -35,6 +35,7 @@ import org.json.JSONTokener;
 import org.springframework.stereotype.Component;
 
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.spring.server.SpringVaadinServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,8 +50,8 @@ import java.net.URLEncoder;
  * A Servlet for handeling OAuth flow.
  * This OAuth Servlet  is only provided as an example and is provided as-is
  */
-@Component
-public class OAuthServlet extends VaadinServlet {
+//@Component
+public class OAuthServlet extends SpringVaadinServlet {
     private static final long serialVersionUID = 1L;
 
     public static final String ACCESS_TOKEN = "ACCESS_TOKEN";
