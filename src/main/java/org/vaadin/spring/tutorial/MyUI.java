@@ -28,11 +28,16 @@ public class MyUI extends UI implements ViewDisplay {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MyUI.class);
 
     private Panel springViewDisplay;
+    
+    public MyUI() {
+		super();
+		LOGGER.info("instantiate UI: {}",this);
+	}
 
     @Override
     protected void init(VaadinRequest request) {
     	
-    	LOGGER.info("creating UI");
+    	LOGGER.info("init UI: {}",this);
     	
         final VerticalLayout root = new VerticalLayout();
         root.setSizeFull();
