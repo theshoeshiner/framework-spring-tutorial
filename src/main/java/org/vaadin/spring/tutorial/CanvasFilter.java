@@ -26,7 +26,7 @@ public class CanvasFilter implements Filter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
 		//TODO get from filter config
-		consumerSecret = "6EE5F35373E23EF5CF7C53A2BF723E6E7D496E0758DC591CA082B382A2712D20";
+		consumerSecret = "80DF7DF4D1E73D11C65C884A9FE8C4E1749914AF247BA5D39786F5099FC05589";
 		//consumerSecret = System.getenv("CANVAS_CONSUMER_SECRET");
 		
 		System.out.println("init filter");
