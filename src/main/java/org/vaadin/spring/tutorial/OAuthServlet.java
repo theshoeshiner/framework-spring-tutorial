@@ -235,6 +235,14 @@ public class OAuthServlet extends SpringVaadinServlet {
 		LOGGER.info("doPost");
 		super.doPost(req, resp);
 	}
+
+
+
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		LOGGER.info("doPut");
+		super.doPut(req, resp);
+	}
     
     
 }
