@@ -41,6 +41,10 @@ public class MyUI extends UI implements ViewDisplay {
         springViewDisplay.setSizeFull();
         root.addComponent(springViewDisplay);
         root.setExpandRatio(springViewDisplay, 1.0f);
+        
+        System.out.println("init vaadin ui");
+        
+        
     }
 
     private Button createNavigationButton(String caption,
