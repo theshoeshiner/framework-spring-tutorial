@@ -64,7 +64,8 @@ public class SignedRequest {
         // Deserialize the json body
         String json_envelope = new String(new Base64(true).decode(encodedEnvelope));
         ObjectMapper mapper = new ObjectMapper();
-        ObjectReader reader = mapper.reader(CanvasRequest.class);
+        ObjectReader reader = mapper.readerFor(CanvasRequest.class);
+        
         CanvasRequest canvasRequest;
         String algorithm;
         try {
