@@ -68,6 +68,8 @@ public class CanvasFilter implements Filter {
 			//LOGGER.info("signedRequestJson: {}",signedRequestJson);
 		}
 	
+		LOGGER.info("current context: {}",request.getAttribute(CANVAS_CONTEXT_ATT));
+		
 		//String yourConsumerSecret=System.getenv("CANVAS_CONSUMER_SECRET");
 		//String yourConsumerSecret = "A2DF24FB0F47ABE94C2E128B7C219B90A6C80C0B451CFF0450ED567702F640DB";
 		

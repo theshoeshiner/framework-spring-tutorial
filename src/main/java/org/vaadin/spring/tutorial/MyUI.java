@@ -9,6 +9,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewDisplay;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.server.VaadinService;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
 import com.vaadin.ui.Button;
@@ -63,6 +64,8 @@ public class MyUI extends UI implements ViewDisplay {
         System.out.println("init vaadin ui");
         
         //Page.getCurrent().getJavaScript().
+        
+        LOGGER.info("Vaadin request: {}",request);
         
         Object canvas = request.getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
         
