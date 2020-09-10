@@ -32,6 +32,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -115,8 +117,18 @@ public class OAuthServlet extends SpringVaadinServlet {
         
         super.init();
     }
+    
+    
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+    	LOGGER.info("Service");
+    	super.service(req, res);
+	}
+
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //System.out.println("Begin OAuth");
         
