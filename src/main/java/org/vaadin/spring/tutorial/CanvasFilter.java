@@ -45,12 +45,16 @@ public class CanvasFilter implements Filter {
 		LOGGER.info("init filter");
 		//LOGGER.warn("init filter warn");
 	}
+	
+	String setcook = "Set-Cookie";
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpServletResponse httpRes = (HttpServletResponse) response;
+		
+		httpRes.addHeader(setcook, "SameSite=None");
 		
 		LOGGER.info("doFilter request: {}",request);
 		
@@ -104,16 +108,16 @@ public class CanvasFilter implements Filter {
 		
 		chain.doFilter(request, response);
 		
-		String setcook = "Set-Cookie";
+		
 		
 		LOGGER.info("Filter done");
 		LOGGER.info("resp headers: {}",httpRes.getHeaderNames());
 		String setcookie = httpRes.getHeader(setcook);
 		LOGGER.info("cookie header 1: {}",setcookie);
-		httpRes.addHeader(setcook, "SameSite=None");
+		//httpRes.addHeader(setcook, "SameSite=None");
 		//setcookie = setcookie+";SameSite=None";
 		//httpRes.setHeader(setcook, setcookie);
-		LOGGER.info("cookie header 2: {}",httpRes.getHeader(setcook));
+		//LOGGER.info("cookie header 2: {}",httpRes.getHeader(setcook));
 		
 		
 		
