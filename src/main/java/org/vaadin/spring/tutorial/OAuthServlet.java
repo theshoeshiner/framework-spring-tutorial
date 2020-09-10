@@ -123,7 +123,17 @@ public class OAuthServlet extends SpringVaadinServlet {
     @Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
     	LOGGER.info("Service request: {}",req);
+    	LOGGER.info("Service request class: {}",req.getClass());
     	super.service(req, res);
+    	
+    	HttpServletRequest request = (HttpServletRequest) req;
+    	HttpServletResponse response = (HttpServletResponse) res;
+    	
+    	//response.addCookie(cookie);
+    	
+    	response.setHeader("Set-Cookie", "HttpOnly; SameSite=None");
+    	
+    	
 	}
 
 
@@ -203,6 +213,8 @@ public class OAuthServlet extends SpringVaadinServlet {
         response.sendRedirect(request.getContextPath() + "/index.html");
         
         super.doGet(request, response);
+        
+        
         
     }
 
