@@ -104,11 +104,19 @@ public class CanvasFilter implements Filter {
 		
 		chain.doFilter(request, response);
 		
+		String setcook = "Set-Cookie";
+		
 		LOGGER.info("Filter done");
 		LOGGER.info("resp headers: {}",httpRes.getHeaderNames());
-		LOGGER.info("cookie header 1: {}",httpRes.getHeader("Set-Cookie"));
-		httpRes.setHeader("Set-Cookie", httpRes.getHeader("Set-Cookie")+";SameSite=None");
-		LOGGER.info("cookie header 2: {}",httpRes.getHeader("Set-Cookie"));
+		String setcookie = httpRes.getHeader(setcook);
+		LOGGER.info("cookie header 1: {}",setcookie);
+		httpRes.addHeader(setcook, "SameSite=None");
+		//setcookie = setcookie+";SameSite=None";
+		//httpRes.setHeader(setcook, setcookie);
+		LOGGER.info("cookie header 2: {}",httpRes.getHeader(setcook));
+		
+		
+		
 	}
 	
 	
