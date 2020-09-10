@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.iqvia.rbm.reports.canvas.SignedRequest;
@@ -18,6 +20,8 @@ import com.iqvia.rbm.reports.canvas.SignedRequest;
 public class CanvasFilter implements Filter {
 	
 	String consumerSecret;
+	
+	public static final Logger LOGGER = LoggerFactory.getLogger(CanvasFilter.class);
 	
 	//protected String ssoSubjectAttribute  = "ping.sso.subject";
 	//protected String ssoDomainAttribute  = "ping.sso.userdomain";
@@ -31,21 +35,26 @@ public class CanvasFilter implements Filter {
 		
 		System.out.println("init filter");
 		System.out.println("secret");
+		LOGGER.info("init filter");
+		LOGGER.warn("init filter");
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
-		System.out.println("doFilter");
+		LOGGER.info("doFilter");
 		
 		// Pull the signed request out of the request body and verify/decode it.
 		Map<String, String[]> parameters = request.getParameterMap();
 		String[] signedRequest = parameters.get("signed_request");
-		System.out.println("signedRequest: "+signedRequest);
+		//System.out.println("signedRequest: "+signedRequest);
+		
+		LOGGER.info("signedRequest: {}",new Object[] {signedRequest});
 		
 		if(signedRequest != null && signedRequest.length > 0) {
 			String signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
-			System.out.println("signedRequestJson: "+signedRequestJson);
+			//System.out.println("signedRequestJson: "+signedRequestJson);
+			LOGGER.info("signedRequestJson: {}",signedRequestJson);
 		}
 	
 		//String yourConsumerSecret=System.getenv("CANVAS_CONSUMER_SECRET");
