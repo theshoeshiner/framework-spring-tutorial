@@ -9,6 +9,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +47,15 @@ public class CanvasFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
+		HttpServletRequest httpReq = (HttpServletRequest) request;
 		
 		LOGGER.info("doFilter request: {}",request);
+		
+		HttpSession session = httpReq.getSession();
+		
+		LOGGER.info("doFilter session: {}",session);
+		//LOGGER.info("doFilter request: {}",request.get`);
+		
 		
 		
 		// Pull the signed request out of the request body and verify/decode it.
@@ -67,11 +76,16 @@ public class CanvasFilter implements Filter {
 			
 			request.setAttribute(CANVAS_CONTEXT_ATT, canvasRequest);
 			
+			session.setAttribute(CANVAS_CONTEXT_ATT, canvasRequest);
+			
+			
 			//System.out.println("signedRequestJson: "+signedRequestJson);
 			//LOGGER.info("signedRequestJson: {}",signedRequestJson);
 		}
 	
-		LOGGER.info("current context: {}",request.getAttribute(CANVAS_CONTEXT_ATT));
+		//LOGGER.info("current context: {}",request.getAttribute(CANVAS_CONTEXT_ATT));
+		
+		LOGGER.info("current session context: {}",session.getAttribute(CANVAS_CONTEXT_ATT));
 		
 		//String yourConsumerSecret=System.getenv("CANVAS_CONSUMER_SECRET");
 		//String yourConsumerSecret = "A2DF24FB0F47ABE94C2E128B7C219B90A6C80C0B451CFF0450ED567702F640DB";
