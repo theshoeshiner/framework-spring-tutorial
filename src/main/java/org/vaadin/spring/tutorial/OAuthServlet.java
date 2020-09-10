@@ -68,11 +68,20 @@ public class OAuthServlet extends VaadinServlet {
     	
         String environment;
 
+        /*
         clientId = this.getInitParameter("clientId");
         clientSecret = this.getInitParameter("clientSecret");
         redirectUri = this.getInitParameter("redirectUri");    // https://canvas.herokuapp.com/oauth/_callback
         environment = this.getInitParameter("environment");    // https://login.salesforce.com
-
+*/
+        
+        clientId= "3MVG9GnaLrwG9TQSsL5GB2Pl2R93qMrA6ykhg1SYw778HSB1prwXbZsOoRTGbt.OwLAptR6FyJb9FxoQzBANS";
+        clientSecret= "80DF7DF4D1E73D11C65C884A9FE8C4E1749914AF247BA5D39786F5099FC05589";
+        redirectUri= "https://canvas.herokuapp.com/oauth/_callback";
+        environment= "https://login.salesforce.com";
+        
+        
+        
         try {
             authUrl = environment
                     + "/services/oauth2/authorize?response_type=code&client_id="
