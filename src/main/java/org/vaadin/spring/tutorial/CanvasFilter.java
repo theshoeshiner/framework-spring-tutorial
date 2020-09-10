@@ -46,7 +46,7 @@ public class CanvasFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
 		
-		LOGGER.info("doFilter");
+		LOGGER.info("doFilter request: {}",request);
 		
 		
 		// Pull the signed request out of the request body and verify/decode it.

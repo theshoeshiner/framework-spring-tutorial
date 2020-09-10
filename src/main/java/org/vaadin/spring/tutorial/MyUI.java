@@ -38,6 +38,8 @@ public class MyUI extends UI implements ViewDisplay {
     protected void init(VaadinRequest request) {
     	
     	LOGGER.info("init UI: {}",this);
+    
+    	
     	
         final VerticalLayout root = new VerticalLayout();
         root.setSizeFull();

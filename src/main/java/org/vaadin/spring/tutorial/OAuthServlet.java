@@ -122,7 +122,7 @@ public class OAuthServlet extends SpringVaadinServlet {
 
     @Override
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-    	LOGGER.info("Service");
+    	LOGGER.info("Service request: {}",req);
     	super.service(req, res);
 	}
 
@@ -132,7 +132,7 @@ public class OAuthServlet extends SpringVaadinServlet {
 
         //System.out.println("Begin OAuth");
         
-        LOGGER.info("doGet");
+        LOGGER.info("doGet request: {}",request);
 
         String accessToken = (String) request.getSession().getAttribute(ACCESS_TOKEN);
 
