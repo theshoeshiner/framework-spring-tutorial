@@ -6,11 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
-import org.springframework.session.web.http.DefaultCookieSerializer;
 
 import com.vaadin.server.VaadinServlet;
 
@@ -63,7 +59,7 @@ public class TutorialApplication {
 		 */
 	}
 	
-	@EventListener
+	/*@EventListener
 	  public void onApplicationEvent(ContextRefreshedEvent event) {
 		ApplicationContext applicationContext = event.getApplicationContext();
 		
@@ -71,5 +67,5 @@ public class TutorialApplication {
 	    DefaultCookieSerializer cookieSerializer = applicationContext.getBean(DefaultCookieSerializer.class);
 	    //log.info("Received DefaultCookieSerializer, Overriding SameSite Strict");
 	    cookieSerializer.setSameSite("None");
-	  }
+	  }*/
 }
