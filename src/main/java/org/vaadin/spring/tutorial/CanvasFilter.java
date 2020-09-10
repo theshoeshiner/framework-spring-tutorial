@@ -74,7 +74,9 @@ public class CanvasFilter implements Filter {
 		}*/
 		
 		if(httpRes.containsHeader(setcook)) {
-			httpRes.addHeader(setcook, "SameSite=None");
+			//httpRes.addHeader(setcook, "SameSite=None");
+			String header = httpRes.getHeader(setcook)+";SameSite=None";
+			httpRes.setHeader(setcook, header);
 		}
 		
 		LOGGER.info("doFilter set cookie: {}",httpRes.getHeader("Set-Cookie"));
