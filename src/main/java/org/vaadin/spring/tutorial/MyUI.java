@@ -1,5 +1,8 @@
 package org.vaadin.spring.tutorial;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
@@ -21,11 +24,16 @@ import com.vaadin.ui.themes.ValoTheme;
 @SpringViewDisplay
 @JavaScript ({ "canvas-all.js","json2.js"})
 public class MyUI extends UI implements ViewDisplay {
+	
+	public static final Logger LOGGER = LoggerFactory.getLogger(MyUI.class);
 
     private Panel springViewDisplay;
 
     @Override
     protected void init(VaadinRequest request) {
+    	
+    	LOGGER.info("creating UI");
+    	
         final VerticalLayout root = new VerticalLayout();
         root.setSizeFull();
         root.setMargin(true);
@@ -48,6 +56,10 @@ public class MyUI extends UI implements ViewDisplay {
         System.out.println("init vaadin ui");
         
         //Page.getCurrent().getJavaScript().
+        
+        Object canvas = request.getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
+        
+        LOGGER.info("canvas context: {}",canvas);
         
         
     }

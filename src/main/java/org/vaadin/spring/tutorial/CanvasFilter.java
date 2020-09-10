@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.iqvia.rbm.reports.canvas.CanvasRequest;
 import com.iqvia.rbm.reports.canvas.SignedRequest;
 
 @Component
@@ -25,6 +26,8 @@ public class CanvasFilter implements Filter {
 	
 	//protected String ssoSubjectAttribute  = "ping.sso.subject";
 	//protected String ssoDomainAttribute  = "ping.sso.userdomain";
+	
+	public static final String CANVAS_CONTEXT_ATT = "canvas-context";
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -54,9 +57,13 @@ public class CanvasFilter implements Filter {
 		LOGGER.info("signedRequest: {}",new Object[] {signedRequest});
 		
 		if(signedRequest != null && signedRequest.length > 0) {
-			String signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
+			//String signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
+			CanvasRequest canvasRequest = SignedRequest.verifyAndDecode(signedRequest[0], consumerSecret);
+			
+			request.setAttribute(CANVAS_CONTEXT_ATT, canvasRequest);
+			
 			//System.out.println("signedRequestJson: "+signedRequestJson);
-			LOGGER.info("signedRequestJson: {}",signedRequestJson);
+			//LOGGER.info("signedRequestJson: {}",signedRequestJson);
 		}
 	
 		//String yourConsumerSecret=System.getenv("CANVAS_CONSUMER_SECRET");
