@@ -1,6 +1,7 @@
 package org.vaadin.spring.tutorial;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -51,7 +52,8 @@ public class CanvasFilter implements Filter {
 		
 		LOGGER.info("doFilter request: {}",request);
 		
-		LOGGER.info("request attributes: {}",request.getAttributeNames());
+		
+		LOGGER.info("request attributes: {}",Collections.list(request.getAttributeNames()));
 		
 		HttpSession session = httpReq.getSession();
 		
