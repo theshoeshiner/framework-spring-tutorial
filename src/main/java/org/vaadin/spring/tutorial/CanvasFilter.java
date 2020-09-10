@@ -53,8 +53,8 @@ public class CanvasFilter implements Filter {
 	
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpServletResponse httpRes = (HttpServletResponse) response;
-		
-		httpRes.addHeader(setcook, "SameSite=None");
+
+		//httpRes.addHeader(setcook, "SameSite=None");
 		
 		LOGGER.info("doFilter request: {}",request);
 		
