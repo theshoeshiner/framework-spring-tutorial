@@ -73,8 +73,12 @@ public class OAuthServlet extends SpringVaadinServlet {
     	
         String environment;
         
+<<<<<<< HEAD
         LOGGER.warn("init warn");
         //LOGGER.info("init");
+=======
+        LOGGER.warn("init");
+>>>>>>> branch 'v7' of https://github.com/theshoeshiner/framework-spring-tutorial.git
 
         /*
         clientId = this.getInitParameter("clientId");
