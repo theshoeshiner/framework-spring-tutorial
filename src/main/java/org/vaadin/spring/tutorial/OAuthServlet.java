@@ -124,8 +124,11 @@ public class OAuthServlet extends SpringVaadinServlet {
 	public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
     	LOGGER.info("Begin Service request: {}",req);
     	
+   
     	HttpServletRequest request = (HttpServletRequest) req;
     	HttpServletResponse response = (HttpServletResponse) res;
+    	
+    	LOGGER.info("isCommitted: {}",response.isCommitted());
     	
     	LOGGER.info("cookie header 1: {}",response.getHeader("Set-Cookie"));
     	
