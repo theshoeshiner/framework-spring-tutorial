@@ -69,6 +69,7 @@ public class MyUI extends UI implements ViewDisplay {
         LOGGER.info("canvas context: {}",canvas);
         
         
+        
     }
 
     private Button createNavigationButton(String caption,
