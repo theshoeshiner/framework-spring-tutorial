@@ -1,8 +1,10 @@
 package org.vaadin.spring.tutorial;
 
+import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewDisplay;
+import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.spring.annotation.SpringViewDisplay;
@@ -17,6 +19,7 @@ import com.vaadin.ui.themes.ValoTheme;
 @Theme("valo")
 @SpringUI
 @SpringViewDisplay
+@JavaScript ({ "canvas-all.js","json2.js"})
 public class MyUI extends UI implements ViewDisplay {
 
     private Panel springViewDisplay;
@@ -43,6 +46,8 @@ public class MyUI extends UI implements ViewDisplay {
         root.setExpandRatio(springViewDisplay, 1.0f);
         
         System.out.println("init vaadin ui");
+        
+        //Page.getCurrent().getJavaScript().
         
         
     }
