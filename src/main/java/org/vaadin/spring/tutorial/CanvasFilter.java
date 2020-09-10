@@ -106,9 +106,9 @@ public class CanvasFilter implements Filter {
 		
 		LOGGER.info("Filter done");
 		LOGGER.info("resp headers: {}",httpRes.getHeaderNames());
-		LOGGER.info("cookie header: {}",httpRes.getHeader("Set-Cookie"));
-		
-		
+		LOGGER.info("cookie header 1: {}",httpRes.getHeader("Set-Cookie"));
+		httpRes.setHeader("Set-Cookie", httpRes.getHeader("Set-Cookie")+";SameSite=None");
+		LOGGER.info("cookie header 2: {}",httpRes.getHeader("Set-Cookie"));
 	}
 	
 	
