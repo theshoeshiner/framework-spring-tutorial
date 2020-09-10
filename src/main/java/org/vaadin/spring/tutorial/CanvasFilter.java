@@ -56,6 +56,8 @@ public class CanvasFilter implements Filter {
 		HttpSession session = httpReq.getSession();
 		
 		LOGGER.info("doFilter session: {}",session);
+		LOGGER.info("doFilter session id: {}",session.getId());
+		
 		//LOGGER.info("doFilter request: {}",request.get`);
 		
 		
