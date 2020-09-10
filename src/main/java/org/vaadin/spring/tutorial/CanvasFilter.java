@@ -51,6 +51,8 @@ public class CanvasFilter implements Filter {
 		
 		LOGGER.info("doFilter request: {}",request);
 		
+		LOGGER.info("request attributes: {}",request.getAttributeNames());
+		
 		HttpSession session = httpReq.getSession();
 		
 		LOGGER.info("doFilter session: {}",session);
@@ -92,10 +94,9 @@ public class CanvasFilter implements Filter {
 		
 		chain.doFilter(request, response);
 		
-		
-		
-		
 	}
+	
+	
 
 	@Override
 	public void destroy() {

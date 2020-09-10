@@ -135,6 +135,8 @@ public class OAuthServlet extends SpringVaadinServlet {
         LOGGER.info("doGet request: {}",request);
 
         String accessToken = (String) request.getSession().getAttribute(ACCESS_TOKEN);
+        
+        //LOGGER.info("doGet request: {}",request);
 
         if (accessToken == null) {
 
@@ -196,7 +198,8 @@ public class OAuthServlet extends SpringVaadinServlet {
             // in the session too
             request.getSession().setAttribute(INSTANCE_URL, instanceUrl);
         }
-	System.out.println("Redirecting");
+	//System.out.println("Redirecting");
+        LOGGER.info("Redirecting");
         response.sendRedirect(request.getContextPath() + "/index.html");
         
         super.doGet(request, response);
