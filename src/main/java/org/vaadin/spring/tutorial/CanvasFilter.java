@@ -104,9 +104,9 @@ public class CanvasFilter implements Filter {
 		
 		chain.doFilter(request, response);
 		
-		LOGGER.info("Filter on the way out...");
+		LOGGER.info("Filter done");
 		LOGGER.info("resp headers: {}",httpRes.getHeaderNames());
-		
+		LOGGER.info("cookie header: {}",httpRes.getHeader("Set-Cookie"));
 		
 		
 	}

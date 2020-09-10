@@ -131,7 +131,7 @@ public class OAuthServlet extends SpringVaadinServlet {
     	
     	//response.addCookie(cookie);
     	
-    	LOGGER.info("cookie header: {}",response.getHeader("Set-Cookie"));
+    	//LOGGER.info("cookie header: {}",response.getHeader("Set-Cookie"));
     	
     	
     	//response.setHeader("Set-Cookie", "HttpOnly; SameSite=None");
