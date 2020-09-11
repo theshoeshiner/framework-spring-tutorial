@@ -43,38 +43,45 @@ public class MyUI extends UI {
 	@Override
 	protected void init(VaadinRequest request) {
 
-		LOGGER.info("init UI: {}", this);
-
-		final VerticalLayout root = new VerticalLayout();
-		//root.setSizeFull();
-		root.setMargin(true);
-		//root.setSpacing(true);
-		root.setDefaultComponentAlignment(Alignment.TOP_LEFT);
-		setContent(root);
-		root.setSizeUndefined();
-		Label header = new Label("Canvas Filter Test");
-		header.addStyleName("h1");
-		root.addComponent(header);
-
-		HttpServletRequest servlet = VaadinServletService.getCurrentServletRequest();
-
-		HttpSession session = servlet.getSession();
-
-		root.addComponent(new Label("Session Id: " + session.getId()));
-
-		CanvasRequest canvas = (CanvasRequest) servlet.getSession().getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
-
-		LOGGER.info("CanvasRequest: {}", canvas);
+		try {
+			
+			LOGGER.info("init UI: {}", this);
+	
+			final VerticalLayout root = new VerticalLayout();
+			//root.setSizeFull();
+			root.setMargin(true);
+			//root.setSpacing(true);
+			root.setDefaultComponentAlignment(Alignment.TOP_LEFT);
+			setContent(root);
+			root.setSizeUndefined();
+			Label header = new Label("Canvas Filter Test");
+			header.addStyleName("h1");
+			root.addComponent(header);
+	
+			HttpServletRequest servlet = VaadinServletService.getCurrentServletRequest();
+	
+			HttpSession session = servlet.getSession();
+	
+			root.addComponent(new Label("Session Id: " + session.getId()));
+	
+			CanvasRequest canvas = (CanvasRequest) servlet.getSession().getAttribute(CanvasFilter.CANVAS_CONTEXT_ATT);
+	
+			LOGGER.info("CanvasRequest: {}", canvas);
+			
+			JsonNode node = (JsonNode) servlet.getSession().getAttribute(CanvasFilter.CANVAS_CONTEXT_JSON_ATT);
+	
+			
+			Label h2 = new Label("Canvas Context");
+			h2.addStyleName("h2");
+			root.addComponent(h2);
+			
+			VerticalLayout object = addObjectProperties(null, node);
+			root.addComponent(object);
 		
-		JsonNode node = (JsonNode) servlet.getSession().getAttribute(CanvasFilter.CANVAS_CONTEXT_JSON_ATT);
-
-		
-		Label h2 = new Label("Canvas Context");
-		h2.addStyleName("h2");
-		root.addComponent(h2);
-		
-		VerticalLayout object = addObjectProperties(null, node);
-		root.addComponent(object);
+		}
+		catch(Exception e) {
+			LOGGER.error("error",e);
+		}
 	}
 
 	
