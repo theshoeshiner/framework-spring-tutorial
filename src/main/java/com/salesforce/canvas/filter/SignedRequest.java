@@ -95,7 +95,6 @@ public class SignedRequest {
         ObjectMapper mapper = new ObjectMapper();
 
         String algorithm;
-        StringWriter writer;
         TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String, Object>>() { };
         
         //mapper.read
@@ -103,7 +102,7 @@ public class SignedRequest {
         try {
         	node = mapper.readTree(json_envelope);
             //HashMap<String,Object> o = mapper.readValue(json_envelope, typeRef);
-            writer = new StringWriter();
+            //writer = new StringWriter();
             //mapper.writeValue(writer, o);
             algorithm = node.get("algorithm").asText();
         } catch (IOException e) {
