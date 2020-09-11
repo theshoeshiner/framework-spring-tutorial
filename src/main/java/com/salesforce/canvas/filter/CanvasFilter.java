@@ -45,7 +45,7 @@ public class CanvasFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
-		clientSecret = filterConfig.getInitParameter(CLIENT_SECRET_ATT);
+		//clientSecret = filterConfig.getInitParameter(CLIENT_SECRET_ATT);
 
 		clientSecret = "80DF7DF4D1E73D11C65C884A9FE8C4E1749914AF247BA5D39786F5099FC05589";
 
