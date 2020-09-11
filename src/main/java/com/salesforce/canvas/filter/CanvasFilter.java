@@ -31,13 +31,9 @@ public class CanvasFilter implements Filter {
 	
 	public static final String CANVAS_CONTEXT_ATT = "canvas-context-object";
 	public static final String CANVAS_CONTEXT_JSON_ATT = "canvas-context-json";
-	
 	public static final String CLIENT_SECRET_ATT = "client-secret";
-	
 	public static final String SET_COOKIE = "Set-Cookie";
-	
 	public static final String SIGNED_REQUEST = "signed_request";
-	
 	public static final String SAMESITE_COOKIE_SUFFIX = ";SameSite=None";
 	
 	
@@ -102,10 +98,7 @@ public class CanvasFilter implements Filter {
 		//LOGGER.info("current context: {}",request.getAttribute(CANVAS_CONTEXT_ATT));
 		
 		LOGGER.info("current session context: {}",session.getAttribute(CANVAS_CONTEXT_ATT));
-		
-		//String yourConsumerSecret=System.getenv("CANVAS_CONSUMER_SECRET");
-		//String yourConsumerSecret = "A2DF24FB0F47ABE94C2E128B7C219B90A6C80C0B451CFF0450ED567702F640DB";
-		
+
 		chain.doFilter(request, response);
 		
 		
@@ -116,13 +109,7 @@ public class CanvasFilter implements Filter {
 		LOGGER.info("cookie header 1: {}",setcookie);
 		
 		LOGGER.info("Filter done");
-		
-		//httpRes.addHeader(setcook, "SameSite=None");
-		//setcookie = setcookie+";SameSite=None";
-		//httpRes.setHeader(setcook, setcookie);
-		//LOGGER.info("cookie header 2: {}",httpRes.getHeader(setcook));
-		
-		
+
 		
 	}
 	

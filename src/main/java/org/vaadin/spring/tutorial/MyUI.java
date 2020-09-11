@@ -52,7 +52,7 @@ public class MyUI extends UI {
 		root.setDefaultComponentAlignment(Alignment.TOP_LEFT);
 		setContent(root);
 		root.setSizeUndefined();
-		Label header = new Label("Canvas Test");
+		Label header = new Label("Canvas Filter Test");
 		header.addStyleName("h1");
 		root.addComponent(header);
 		//root.setExpandRatio(header, 0);
