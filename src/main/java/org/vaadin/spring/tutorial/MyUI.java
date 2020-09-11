@@ -43,15 +43,16 @@ public class MyUI extends UI {
 		LOGGER.info("init UI: {}", this);
 
 		final VerticalLayout root = new VerticalLayout();
-		root.setSizeFull();
+		//root.setSizeFull();
 		root.setMargin(true);
-		root.setSpacing(true);
+		//root.setSpacing(true);
 		root.setDefaultComponentAlignment(Alignment.TOP_LEFT);
 		setContent(root);
 
 		Label header = new Label("Canvas Test");
 		header.addStyleName("h1");
 		root.addComponent(header);
+		//root.setExpandRatio(header, 0);
 		
 		
 
