@@ -14,6 +14,7 @@ import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServletService;
+import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -134,7 +135,8 @@ public class MyUI extends UI {
 		VerticalLayout propLayout = new VerticalLayout();
 		//layout.addComponent(propLayout);
 
-		propLayout.setMargin(true);
+		//propLayout.setMargin(true);
+		propLayout.setMargin(new MarginInfo(false,true));
 		for (Iterator<String> it = node.fieldNames(); it.hasNext();) {
 			String name = it.next();
 			JsonNode sub = node.get(name);
