@@ -47,7 +47,7 @@ public class CanvasFilter implements Filter {
 		
 		clientSecret = filterConfig.getInitParameter(CLIENT_SECRET_ATT);
 
-		//clientSecret = "80DF7DF4D1E73D11C65C884A9FE8C4E1749914AF247BA5D39786F5099FC05589";
+		clientSecret = "80DF7DF4D1E73D11C65C884A9FE8C4E1749914AF247BA5D39786F5099FC05589";
 
 	}
 	
