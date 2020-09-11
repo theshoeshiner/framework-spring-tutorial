@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import com.salesforce.canvas.filter.CanvasFilter;
 import com.vaadin.server.VaadinServlet;
 
-@SpringBootApplication(scanBasePackageClasses = {CanvasFilter.class})
+@SpringBootApplication(scanBasePackageClasses = {CanvasFilter.class,TutorialApplication.class})
 public class TutorialApplication {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(TutorialApplication.class);
