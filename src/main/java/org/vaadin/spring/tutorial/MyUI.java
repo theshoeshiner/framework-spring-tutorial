@@ -97,7 +97,7 @@ public class MyUI extends UI {
 		//VerticalLayout object =new VerticalLayout();
 		
 		
-		VerticalLayout object = addObjectProperties(object, node);
+		VerticalLayout object = addObjectProperties(null, node);
 		root.addComponent(object);
 	}
 
