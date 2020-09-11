@@ -48,7 +48,7 @@ public class MyUI extends UI {
 		//root.setSpacing(true);
 		root.setDefaultComponentAlignment(Alignment.TOP_LEFT);
 		setContent(root);
-
+		root.setSizeUndefined();
 		Label header = new Label("Canvas Test");
 		header.addStyleName("h1");
 		root.addComponent(header);
