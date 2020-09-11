@@ -99,6 +99,9 @@ public class MyUI extends UI {
 		
 		//VerticalLayout object =new VerticalLayout();
 		
+		Label h2 = new Label("Canvas Context");
+		h2.addStyleName("h2");
+		root.addComponent(h2);
 		
 		VerticalLayout object = addObjectProperties(null, node);
 		root.addComponent(object);
