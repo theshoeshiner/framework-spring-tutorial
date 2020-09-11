@@ -21,6 +21,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.themes.ValoTheme;
 
 @Theme("valo")
 @SpringUI
@@ -140,6 +141,7 @@ public class MyUI extends UI {
 
 			if (sub.isObject()) {
 				Button b = new Button(name);
+				b.addStyleName(ValoTheme.BUTTON_LINK);
 				propLayout.addComponent(b);
 				VerticalLayout subs = addObjectProperties(propLayout, sub);
 				propLayout.addComponent(subs);
