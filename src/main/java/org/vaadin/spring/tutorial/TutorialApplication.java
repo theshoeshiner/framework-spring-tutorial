@@ -8,9 +8,10 @@ import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletCont
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.context.annotation.Bean;
 
+import com.salesforce.canvas.filter.CanvasFilter;
 import com.vaadin.server.VaadinServlet;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = {CanvasFilter.class})
 public class TutorialApplication {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(TutorialApplication.class);

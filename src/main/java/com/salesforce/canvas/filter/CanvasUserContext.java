@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.iqvia.rbm.reports.canvas;
+package com.salesforce.canvas.filter;
 
 import java.util.Locale;
 

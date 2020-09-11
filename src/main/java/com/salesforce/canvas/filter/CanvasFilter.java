@@ -1,4 +1,4 @@
-package org.vaadin.spring.tutorial;
+package com.salesforce.canvas.filter;
 
 import java.io.IOException;
 import java.util.Map;
@@ -18,13 +18,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.iqvia.rbm.reports.canvas.CanvasRequest;
-import com.iqvia.rbm.reports.canvas.SignedRequest;
 
 @Component
 public class CanvasFilter implements Filter {
 	
-	String consumerSecret;
+	String clientSecret;
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger(CanvasFilter.class);
 	
@@ -33,21 +31,27 @@ public class CanvasFilter implements Filter {
 	
 	public static final String CANVAS_CONTEXT_ATT = "canvas-context-object";
 	public static final String CANVAS_CONTEXT_JSON_ATT = "canvas-context-json";
+	
+	public static final String CLIENT_SECRET_ATT = "client-secret";
+	
+	public static final String SET_COOKIE = "Set-Cookie";
+	
+	public static final String SIGNED_REQUEST = "signed_request";
+	
+	public static final String SAMESITE_COOKIE_SUFFIX = ";SameSite=None";
+	
+	
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
-		//TODO get from filter config
-		consumerSecret = "80DF7DF4D1E73D11C65C884A9FE8C4E1749914AF247BA5D39786F5099FC05589";
-		//consumerSecret = System.getenv("CANVAS_CONSUMER_SECRET");
-		
-		//System.out.println("init filter");
-		//System.out.println("secret");
-		LOGGER.info("init filter");
-		//LOGGER.warn("init filter warn");
+		clientSecret = filterConfig.getInitParameter(CLIENT_SECRET_ATT);
+
+		//clientSecret = "80DF7DF4D1E73D11C65C884A9FE8C4E1749914AF247BA5D39786F5099FC05589";
+
 	}
 	
-	String setcook = "Set-Cookie";
+	
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -55,53 +59,31 @@ public class CanvasFilter implements Filter {
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpServletResponse httpRes = (HttpServletResponse) response;
 
-		//httpRes.addHeader(setcook, "SameSite=None");
-		
-		//LOGGER.info("doFilter request: {}",request);
-		
-		//request.getParameterNames()
-		
-		//LOGGER.info("request attributes: {}",Collections.list(request.getAttributeNames()));
-		
-		//LOGGER.info("request parameters: {}",Collections.list(request.getParameterNames()));
-		
 		HttpSession session = httpReq.getSession();
 		
-		LOGGER.info("doFilter set cookie: {}",httpRes.getHeader("Set-Cookie"));
-		
-		/*if(response.containsHeader("Set-Cookie")) {
-			String header = response.getHeader("Set-Cookie")+";SameSite=None";
-			response.setHeader("Set-Cookie", header);
-		}*/
-		
-		if(httpRes.containsHeader(setcook)) {
-			//httpRes.addHeader(setcook, "SameSite=None");
-			String header = httpRes.getHeader(setcook)+";SameSite=None";
-			httpRes.setHeader(setcook, header);
+		LOGGER.info("doFilter set cookie: {}",httpRes.getHeader(SET_COOKIE));
+
+		//If the response is sending a cookie then make sure we add the samesite value
+		if(httpRes.containsHeader(SET_COOKIE)) {
+			String header = httpRes.getHeader(SET_COOKIE)+SAMESITE_COOKIE_SUFFIX;
+			httpRes.setHeader(SET_COOKIE, header);
 		}
 		
-		LOGGER.info("doFilter set cookie: {}",httpRes.getHeader("Set-Cookie"));
-		
-		LOGGER.info("doFilter session: {}",session);
-		LOGGER.info("doFilter session id: {}",session.getId());
-		
-		//LOGGER.info("doFilter request: {}",request.get`);
-		
-		
-		
+
 		// Pull the signed request out of the request body and verify/decode it.
 		Map<String, String[]> parameters = request.getParameterMap();
-		String[] signedRequest = parameters.get("signed_request");
+		String[] signedRequest = parameters.get(SIGNED_REQUEST);
+		
 		//System.out.println("signedRequest: "+signedRequest);
 		
 		LOGGER.info("signedRequest: {}",new Object[] {signedRequest});
 		
 		if(signedRequest != null && signedRequest.length > 0) {
-			JsonNode signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
+			JsonNode signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], clientSecret);
 			
 			LOGGER.info("signedRequestJson: {}",signedRequestJson);
 			
-			CanvasRequest canvasRequest = SignedRequest.verifyAndDecode(signedRequest[0], consumerSecret);
+			CanvasRequest canvasRequest = SignedRequest.verifyAndDecode(signedRequest[0], clientSecret);
 			
 			LOGGER.info("setting context attribute to: {}",canvasRequest);
 			
@@ -128,7 +110,7 @@ public class CanvasFilter implements Filter {
 		
 		LOGGER.info("Filter done");
 		LOGGER.info("resp headers: {}",httpRes.getHeaderNames());
-		String setcookie = httpRes.getHeader(setcook);
+		String setcookie = httpRes.getHeader(SET_COOKIE);
 		LOGGER.info("cookie header 1: {}",setcookie);
 		//httpRes.addHeader(setcook, "SameSite=None");
 		//setcookie = setcookie+";SameSite=None";

@@ -23,7 +23,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.iqvia.rbm.reports.canvas;
+package com.salesforce.canvas.filter;
 
 import java.util.HashMap;
 import java.util.Map;
