@@ -56,6 +56,8 @@ public class CanvasFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 	
+		LOGGER.info("doFilter");
+		
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpServletResponse httpRes = (HttpServletResponse) response;
 
@@ -108,10 +110,13 @@ public class CanvasFilter implements Filter {
 		
 		
 		
-		LOGGER.info("Filter done");
+	
 		LOGGER.info("resp headers: {}",httpRes.getHeaderNames());
 		String setcookie = httpRes.getHeader(SET_COOKIE);
 		LOGGER.info("cookie header 1: {}",setcookie);
+		
+		LOGGER.info("Filter done");
+		
 		//httpRes.addHeader(setcook, "SameSite=None");
 		//setcookie = setcookie+";SameSite=None";
 		//httpRes.setHeader(setcook, setcookie);
