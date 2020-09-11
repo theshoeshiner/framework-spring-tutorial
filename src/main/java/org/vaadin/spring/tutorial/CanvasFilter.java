@@ -1,7 +1,6 @@
 package org.vaadin.spring.tutorial;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -18,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.iqvia.rbm.reports.canvas.CanvasRequest;
 import com.iqvia.rbm.reports.canvas.SignedRequest;
 
@@ -31,7 +31,8 @@ public class CanvasFilter implements Filter {
 	//protected String ssoSubjectAttribute  = "ping.sso.subject";
 	//protected String ssoDomainAttribute  = "ping.sso.userdomain";
 	
-	public static final String CANVAS_CONTEXT_ATT = "canvas-context";
+	public static final String CANVAS_CONTEXT_ATT = "canvas-context-object";
+	public static final String CANVAS_CONTEXT_JSON_ATT = "canvas-context-json";
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -96,7 +97,7 @@ public class CanvasFilter implements Filter {
 		LOGGER.info("signedRequest: {}",new Object[] {signedRequest});
 		
 		if(signedRequest != null && signedRequest.length > 0) {
-			String signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
+			JsonNode signedRequestJson = SignedRequest.verifyAndDecodeAsJson(signedRequest[0], consumerSecret);
 			
 			LOGGER.info("signedRequestJson: {}",signedRequestJson);
 			
@@ -104,9 +105,10 @@ public class CanvasFilter implements Filter {
 			
 			LOGGER.info("setting context attribute to: {}",canvasRequest);
 			
-			request.setAttribute(CANVAS_CONTEXT_ATT, canvasRequest);
+			//request.setAttribute(CANVAS_CONTEXT_ATT, canvasRequest);
 			
 			session.setAttribute(CANVAS_CONTEXT_ATT, canvasRequest);
+			session.setAttribute(CANVAS_CONTEXT_JSON_ATT, signedRequestJson);
 			
 			
 			//System.out.println("signedRequestJson: "+signedRequestJson);

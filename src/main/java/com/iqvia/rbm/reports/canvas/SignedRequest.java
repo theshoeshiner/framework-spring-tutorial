@@ -40,6 +40,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 
@@ -83,7 +84,7 @@ public class SignedRequest {
     }
 
 
-    public static String verifyAndDecodeAsJson(String input, String secret) throws SecurityException {
+    public static JsonNode verifyAndDecodeAsJson(String input, String secret) throws SecurityException {
 
         String[] split = getParts(input);
 
@@ -95,13 +96,16 @@ public class SignedRequest {
 
         String algorithm;
         StringWriter writer;
-        TypeReference<HashMap<String,Object>> typeRef
-                = new TypeReference<HashMap<String, Object>>() { };
+        TypeReference<HashMap<String,Object>> typeRef = new TypeReference<HashMap<String, Object>>() { };
+        
+        //mapper.read
+        JsonNode node;
         try {
-            HashMap<String,Object> o = mapper.readValue(json_envelope, typeRef);
+        	node = mapper.readTree(json_envelope);
+            //HashMap<String,Object> o = mapper.readValue(json_envelope, typeRef);
             writer = new StringWriter();
-            mapper.writeValue(writer, o);
-            algorithm = (String)o.get("algorithm");
+            //mapper.writeValue(writer, o);
+            algorithm = node.get("algorithm").asText();
         } catch (IOException e) {
             throw new SecurityException(String.format("Error [%s] deserializing JSON to Object [%s]", e.getMessage(),
                     typeRef.getClass().getName()), e);
@@ -111,7 +115,7 @@ public class SignedRequest {
 
         // If we got this far, then the request was not tampered with.
         // return the request as a JSON string.
-        return writer.toString();
+        return node;
     }
 
     private static String[] getParts(String input) {
