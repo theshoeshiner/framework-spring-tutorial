@@ -94,9 +94,11 @@ public class MyUI extends UI {
 		
 		LOGGER.info("canvas context 2: {}",canvas);*/
 		
-		VerticalLayout object =new VerticalLayout();
-		addObjectProperties(object, node);
-
+		//VerticalLayout object =new VerticalLayout();
+		
+		
+		VerticalLayout object = addObjectProperties(object, node);
+		root.addComponent(object);
 	}
 
 	/*public void addObjectProperty(VerticalLayout layout,JsonNode node, String prop) {
@@ -123,11 +125,11 @@ public class MyUI extends UI {
 		}
 	}*/
 
-	public VerticalLayout addObjectProperties(VerticalLayout propLayout, JsonNode node) {
+	public VerticalLayout addObjectProperties(VerticalLayout pl, JsonNode node) {
 		//Button b = new Button(prop);
 		//layout.addComponent(b);
 
-		//VerticalLayout propLayout = new VerticalLayout();
+		VerticalLayout propLayout = new VerticalLayout();
 		//layout.addComponent(propLayout);
 
 		propLayout.setMargin(true);
