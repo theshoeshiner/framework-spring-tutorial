@@ -11,13 +11,13 @@ import org.springframework.context.annotation.Bean;
 import com.salesforce.canvas.filter.CanvasFilter;
 import com.vaadin.server.VaadinServlet;
 
-@SpringBootApplication(scanBasePackageClasses = {CanvasFilter.class,TutorialApplication.class})
-public class TutorialApplication {
+@SpringBootApplication(scanBasePackageClasses = {CanvasFilter.class,CanvasFilterApplication.class})
+public class CanvasFilterApplication {
 
-	public static final Logger LOGGER = LoggerFactory.getLogger(TutorialApplication.class);
+	public static final Logger LOGGER = LoggerFactory.getLogger(CanvasFilterApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(TutorialApplication.class, args);
+		SpringApplication.run(CanvasFilterApplication.class, args);
 	}
 
 	/*@Bean

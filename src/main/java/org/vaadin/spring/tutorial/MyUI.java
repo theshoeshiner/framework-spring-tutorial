@@ -25,10 +25,9 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.themes.ValoTheme;
 
-@Theme("valo")
-@SpringUI
-//@SpringViewDisplay
-@JavaScript({ "canvas-all.js", "json2.js" })
+//@Theme("valo")
+//@SpringUI
+//@JavaScript({ "canvas-all.js", "json2.js" })
 public class MyUI extends UI {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(MyUI.class);
